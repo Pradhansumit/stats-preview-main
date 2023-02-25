@@ -1,0 +1,158 @@
+//colors
+//primary colors
+$Verydarkblue: hsl(233, 47%, 7%);
+$Darkdesaturatedblue: hsl(244, 38%, 16%);
+$Softviolet: hsl(277, 64%, 61%);
+
+//Neutral
+
+$White: hsl(0, 0%, 100%);
+$Slightlytransparentwhite: hsla(0, 0%, 100%, 0.75);
+$Slightlytransparentwhite2: hsla(0, 0%, 100%, 0.6);
+
+//typography
+$ffamInter: "Inter", sans-serif;
+$ffamLexend: "Lexend Deca", sans-serif;
+
+$freg: 400;
+$fbold: 700;
+
+// mixins
+
+@mixin Flex($dir, $jc) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $jc;
+  align-items: center;
+}
+
+//globals
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  @include Flex(row, center);
+  background: $Verydarkblue;
+  min-height: 100vh;
+  color: $White;
+}
+
+.container {
+  background: $Darkdesaturatedblue;
+  border-radius: 10px;
+  overflow: hidden;
+  @include Flex(column, space-between);
+  picture {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .text-content {
+    padding: 35px;
+
+    .text-upper-container {
+      margin-bottom: 46px;
+      .heading {
+        font-weight: $fbold;
+        font-family: $ffamInter;
+        font-size: 1.7rem;
+        margin-bottom: 18px;
+        span {
+          color: $Softviolet;
+        }
+      }
+
+      .desc {
+        font-family: $ffamLexend;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: $Slightlytransparentwhite;
+      }
+    }
+
+    .status-container {
+      .status-box {
+        &:last-child {
+          margin-bottom: 0;
+        }
+        .bold {
+          font-family: $ffamInter;
+          font-weight: $fbold;
+          margin-bottom: 0.2rem;
+        }
+        .caption {
+          text-transform: uppercase;
+          font-family: $ffamLexend;
+          font-size: 0.8rem;
+          color: $Slightlytransparentwhite2;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .container {
+    width: 328px;
+    height: auto;
+
+    .text-content {
+      @include Flex(column, space-between);
+      text-align: center;
+    }
+
+    .status-box {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .container {
+    width: 1110px;
+    height: 447px;
+
+    @include Flex(row, center);
+
+    picture {
+      order: 2;
+      img {
+        width: 540px;
+        height: 447px;
+        object-fit: cover;
+      }
+    }
+    .text-content {
+      width: 570px;
+      padding: 70px;
+      padding-right: 120px;
+      text-align: left;
+      align-items: start;
+      .text-upper-container {
+        .heading {
+          font-size: 2.2rem;
+        }
+        .desc {
+          margin-bottom: 2rem;
+        }
+      }
+      .status-container {
+        @include Flex(row, space-between);
+        // border: solid 2px crimson;
+        width: 90%;
+        .status-box {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
